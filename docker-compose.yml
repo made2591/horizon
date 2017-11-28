@@ -1,0 +1,47 @@
+### STAGE: Build ###
+
+# The builder version
+version: '3.3'
+
+# Services
+services:
+
+  # Storage
+  db:
+
+    # Starting official image
+    image: "mongo:latest"
+
+    # my volume
+    volumes: 
+      - ./db:/data/db
+
+    # Ports
+    ports:
+     - 27017:27017
+
+  # API for Horizon
+  api:
+
+    # use Dockerfile inside folder
+    build: ./api/.
+
+    # exposed port for api
+    ports: 
+      - 8080:8080
+
+    env_file:
+      - env_var
+
+  # Angular frontend served by nginx
+  web:
+
+    # use Dockerfile inside folder
+    build: ./web/.
+
+    # expose port 80 to host
+    ports:
+      - 127.0.0.1:80:8080
+
+    env_file:
+      - env_var
