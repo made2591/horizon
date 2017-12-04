@@ -104,6 +104,9 @@ web/src/app/**.*.js
 # Prod build
 web/dist
 
+# Storage
+db/
+
 # root
 env_var
 env_var.swp
